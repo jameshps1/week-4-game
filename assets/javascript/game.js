@@ -13,7 +13,7 @@ $("#number-to-guess").text(randomNumber);
 var counter = 0;
 // Now for the hard part. Creating multiple crystals each with their own unique number value.
 // We begin by expanding our array to include four options.
-var numberOptions = randomNumberFromRange1;
+var numberOptions = randomNumberFromRange;
 // Next we create a for loop to create crystals for every numberOption.
 //create an array with each image being an index
 var image = [
@@ -35,19 +35,20 @@ for (var i = 0; i < numberOptions.length; i++) {
   // This will allow the CSS to take effect.
   imageCrystal
     .addClass("crystal-image")
-    .data('crystal-value',randomNumberFromRange1[i])
+    .data('crystal-value',randomNumberFromRange(1,12))
     .attr('src', image[i])
   $("#crystals").append(imageCrystal);
   //var image = new Array();
-}
-var minNumber1 = 1;
-var maxNumber1 = 12
-
-var randomNumber1 = randomNumberFromRange1(minNumber1, maxNumber1);
-
-function randomNumberFromRange1(min,max)
-{
-    return Math.floor(Math.random()*(max-min+1)+min);
+  var minNumber = 1;
+  var maxNumber = 12
+  
+  var randomNumber = randomNumberFromRange(minNumber, maxNumber);
+  
+  function randomNumberFromRange(min,max)
+  {
+      return Math.floor(Math.random()*(max-min+1)+min);
+  }
+  
 }
    
   
