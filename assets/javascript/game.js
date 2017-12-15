@@ -13,7 +13,7 @@ $("#number-to-guess").text(randomNumber);
 var counter = 0;
 // Now for the hard part. Creating multiple crystals each with their own unique number value.
 // We begin by expanding our array to include four options.
-var numberOptions = [10, 5, 3, 7];
+var numberOptions = randomNumberFromRange1;
 // Next we create a for loop to create crystals for every numberOption.
 //create an array with each image being an index
 var image = [
@@ -35,10 +35,19 @@ for (var i = 0; i < numberOptions.length; i++) {
   // This will allow the CSS to take effect.
   imageCrystal
     .addClass("crystal-image")
-    .data('crystal-value',numberOptions[i])
+    .data('crystal-value',randomNumberFromRange1[i])
     .attr('src', image[i])
   $("#crystals").append(imageCrystal);
   //var image = new Array();
+}
+var minNumber1 = 1;
+var maxNumber1 = 12
+
+var randomNumber1 = randomNumberFromRange1(minNumber1, maxNumber1);
+
+function randomNumberFromRange1(min,max)
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
 }
    
   
@@ -91,13 +100,13 @@ $(document).on("click", '#crystals img', function() {
   crystalValue = parseInt(crystalValue);
   // We then add the crystalValue to the user's "counter" which is a global variable.
   // Every click, from every crystal adds to the global counter.
-  counter = crystalValue;
+  (counter += crystalValue);
   // All of the same game win-lose logic applies. So the rest remains unchanged.
-  alert(New score + counter);
-  if (counter === targetNumber) {
+  alert('New score:' + counter);
+  if (counter === randomNumber) {
     alert("You win!");
   }
-  else if (counter >= targetNumber) {
+  else if (counter >= randomNumber) {
     alert("You lose!!");
   }
 })
